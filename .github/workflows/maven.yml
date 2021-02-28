@@ -42,4 +42,4 @@ jobs:
       if: ${{ always() }}
       uses: actions/upload-artifact@v2
       with:
-        path: path/to/artifact/world.txt
+        path: target/site/jacoco/
