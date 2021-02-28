@@ -37,3 +37,9 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         fail_on_test_failures: false
+
+    - name: Generate JaCoCo Badge
+      id: jacoco
+      uses: cicirello/jacoco-badge-generator@v2.0.0
+      with:
+        generate-branches-badge: true
