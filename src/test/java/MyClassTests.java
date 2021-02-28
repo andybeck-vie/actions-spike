@@ -6,6 +6,6 @@ public class MyClassTests {
 
     @Test
     public void coveredTest() {
-        assertEquals(3, new MyClass().covered(1, 2));
+        assertEquals(4, new MyClass().covered(1, 2));
     }
 }
