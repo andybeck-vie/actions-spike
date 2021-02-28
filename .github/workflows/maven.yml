@@ -36,10 +36,11 @@ jobs:
       uses: scacap/action-surefire-report@v1.0.5
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        fail_on_test_failures: false
+        fail_on_test_failures: true
 
     - name: Publish Jacoco Report
       if: ${{ always() }}
-      uses: actions/upload-artifact@v2
+      uses: peaceiris/actions-gh-pages@v3
       with:
-        path: target/site/jacoco/
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./target/site/jacoco/
