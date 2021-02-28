@@ -29,10 +29,11 @@ jobs:
         restore-keys: ${{ runner.os }}-m2
 
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: mvn -B package --file pom.xml -fn
 
     - name: Publish Test Report
       if: ${{ always() }}
       uses: scacap/action-surefire-report@v1.0.5
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
+        fail_on_test_failures: false
