@@ -49,7 +49,7 @@ jobs:
         reports: 'target/site/jacoco/jacoco.xml' # REQUIRED # The coverage reports that should be parsed (separated by semicolon). Globbing is supported.
         targetdir: 'coveragereport'
     - name: Upload coverage report artifact
-    uses: actions/upload-artifact@v1.0.0
-    with:
-      name: CoverageReport # Artifact name
-      path: coveragereport # Directory containing files to upload
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: CoverageReport # Artifact name
+        path: coveragereport # Directory containing files to upload
