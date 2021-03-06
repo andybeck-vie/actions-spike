@@ -29,31 +29,15 @@ jobs:
         restore-keys: ${{ runner.os }}-m2
 
     - name: Build with Maven
-      run: mvn -B package --file pom.xml -fnx
+      run: mvn clean install -DskipTests
+
+    - name: Run tests
+      run: mvn test
 
     - name: Publish Test Report
       if: ${{ always() }}
       uses: scacap/action-surefire-report@v1.0.5
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        fail_on_test_failures: true
-
-    - name: Setup .NET Core # Required to execute ReportGenerator
-      if: ${{ always() }}
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 5.0.103
-
-    - name: ReportGenerator
-      if: ${{ always() }}
-      uses: danielpalme/ReportGenerator-GitHub-Action@4.8.6
-      with:
-        reports: '../target/site/jacoco/jacoco.xml' # REQUIRED # The coverage reports that should be parsed (separated by semicolon). Globbing is supported.
-        targetdir: 'coveragereport'
-
-    - name: Upload coverage report artifact
-      if: ${{ always() }}
-      uses: actions/upload-artifact@v1.0.0
-      with:
-        name: CoverageReport # Artifact name
-        path: coveragereport # Directory containing files to upload
+        fail_on_test_failures: false
+ # Directory containing files to upload
